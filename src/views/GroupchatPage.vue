@@ -43,7 +43,6 @@ export default {
             } else {
                 this.logs = data;
             }
-            console.log(data);
         });
     },
 };
