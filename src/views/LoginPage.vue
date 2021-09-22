@@ -33,7 +33,6 @@
                         Don't have account?
                         <a href="#">Sign-up now</a>
                     </div>
-                    
                 </form>
             </div>
         </div>
@@ -66,15 +65,15 @@ export default {
         GoogleLogin,
     },
     methods: {
-        ...mapActions(["loginHandler", "checkToken"]),
+        ...mapActions(["loginHandler", "checkToken", "googleSignIn"]),
         async loginButton() {
             const payload = this.credentials;
             await this.loginHandler(payload);
-            // this.$router.push("/");
+            this.$router.push("/");
         },
-        onSuccess(googleUser) {
+        async onSuccess(googleUser) {
             const idToken = googleUser.getAuthResponse().id_token;
-            this.googleSignIn(idToken);
+            await this.googleSignIn(idToken);
             this.checkToken();
             this.$router.push("/");
         },
