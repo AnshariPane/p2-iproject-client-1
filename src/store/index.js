@@ -35,7 +35,6 @@ export default new Vuex.Store({
                     url: "/login",
                     data: payload,
                 });
-                console.log(response.data, "<<<<");
                 localStorage.setItem(
                     "access_token",
                     response.data.access_token

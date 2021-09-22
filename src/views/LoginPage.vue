@@ -31,7 +31,9 @@
                     ></GoogleLogin>
                     <div class="signup">
                         Don't have account?
-                        <a href="#">Sign-up now</a>
+                        <router-link :to="{ name: 'Register' }"
+                            >Sign-up now</router-link
+                        >
                     </div>
                 </form>
             </div>
