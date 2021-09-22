@@ -10,7 +10,10 @@ export default new Vuex.Store({
         isLoggedIn: false,
         username: "Guest",
         UserId: 0,
-        userEmail: "Guest"
+        userEmail: "Guest",
+        characters: [],
+        charaDetail: {},
+        youtubeVideo: [],
     },
     mutations: {
         SET_ISLOGGEDIN(state, payload) {
@@ -25,10 +28,18 @@ export default new Vuex.Store({
         SET_USEREMAIL(state, payload) {
             state.username = payload;
         },
+        SET_CHARACTERSDATA(state, payload) {
+            state.characters = payload;
+        },
+        SET_CHARADETAIL(state, payload) {
+            state.charaDetail = payload;
+        },
+        SET_YOUTUBEVIDEO(state, payload) {
+            state.youtubeVideo = payload;
+        },
     },
     actions: {
         async loginHandler({ commit }, payload) {
-            
             try {
                 const response = await myAxios({
                     method: "POST",
@@ -74,11 +85,11 @@ export default new Vuex.Store({
                     data: {
                         idToken: payload,
                     },
-                })
+                });
                 const { access_token, email } = response.data;
                 localStorage.setItem("access_token", access_token);
                 localStorage.setItem("userEmail", email);
-                localStorage.setItem("UserId", response.data.id)
+                localStorage.setItem("UserId", response.data.id);
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -100,10 +111,10 @@ export default new Vuex.Store({
         async registerHandler(context, payload) {
             try {
                 await myAxios({
-                    url : "/register",
+                    url: "/register",
                     method: "POST",
-                    data : payload
-                })
+                    data: payload,
+                });
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -120,7 +131,58 @@ export default new Vuex.Store({
                     timer: 2000,
                 });
             }
-        }
+        },
+        async fetchCharacters(context) {
+            try {
+                const response = await myAxios({
+                    url: "/characters",
+                    method: "GET",
+                });
+                context.commit("SET_CHARACTERSDATA", response.data);
+            } catch (error) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            }
+        },
+        async fetchCharaDetail(context, payload) {
+            try {
+                const response = await myAxios({
+                    url: `/characters/${payload}`,
+                    method: "GET",
+                });
+                context.commit("SET_CHARADETAIL", response.data);
+            } catch (error) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            }
+        },
+        async fetchYoutubeVideo({ commit }, query ) {
+            try {
+                const response = await myAxios({
+                    url: `/characters/youtubeVideo?name=${query}`,
+                    method: "GET",
+                });
+                commit("SET_YOUTUBEVIDEO", response.data);
+            } catch (error) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            }
+        },
     },
     modules: {},
 });

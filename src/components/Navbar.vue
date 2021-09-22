@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
-            <img class="logo" src="" alt="" />
+            <h3 class="logo">MyVtuberList</h3>
             <nav>
                 <ul class="nav_links">
                     <li><router-link to="/">Home</router-link></li>
@@ -86,8 +86,9 @@ header {
 }
 
 .logo {
-    cursor: pointer;
     margin-right: auto;
+    color: #fff;
+    font-size: 25px;
 }
 
 .nav_links {
