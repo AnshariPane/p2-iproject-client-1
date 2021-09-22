@@ -98,6 +98,30 @@ export default new Vuex.Store({
                 });
             }
         },
+        async registerHandler(context, payload) {
+            try {
+                await myAxios({
+                    url : "/register",
+                    method: "POST",
+                    data : payload
+                })
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Register success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            } catch (error) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: `${error.response.data.message}`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            }
+        }
     },
     modules: {},
 });
