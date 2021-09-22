@@ -75,11 +75,11 @@ export default new Vuex.Store({
                     data: {
                         idToken: payload,
                     },
-                });
-                const { access_token, email, id } = response.data;
+                })
+                const { access_token, email } = response.data;
                 localStorage.setItem("access_token", access_token);
                 localStorage.setItem("userEmail", email);
-                localStorage.setItem("UserId", id);
+                localStorage.setItem("UserId", response.data.id)
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
