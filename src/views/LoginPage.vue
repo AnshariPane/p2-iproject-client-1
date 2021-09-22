@@ -24,10 +24,16 @@
                         <input type="submit" value="LOGIN" />
                     </div>
                     <div class="login">or</div>
+                    <GoogleLogin
+                        :params="params"
+                        :renderParams="renderParams"
+                        :onSuccess="onSuccess"
+                    ></GoogleLogin>
                     <div class="signup">
                         Don't have account?
                         <a href="#">Sign-up now</a>
                     </div>
+                    
                 </form>
             </div>
         </div>
@@ -35,6 +41,7 @@
 </template>
 
 <script>
+import GoogleLogin from "vue-google-login";
 import { mapActions } from "vuex";
 export default {
     name: "Login",
@@ -44,14 +51,32 @@ export default {
                 username: "",
                 password: "",
             },
+            params: {
+                client_id:
+                    "299163885178-lboph42aq8spb33ckircvk2obrdqleu4.apps.googleusercontent.com",
+            },
+            renderParams: {
+                width: 305,
+                height: 36,
+                longtitle: true,
+            },
         };
     },
+    components: {
+        GoogleLogin,
+    },
     methods: {
-        ...mapActions(["loginHandler"]),
+        ...mapActions(["loginHandler", "checkToken"]),
         async loginButton() {
             const payload = this.credentials;
             await this.loginHandler(payload);
-            //    this.$router.push("/")
+            this.$router.push("/");
+        },
+        onSuccess(googleUser) {
+            const idToken = googleUser.getAuthResponse().id_token;
+            this.googleSignIn(idToken);
+            this.checkToken();
+            this.$router.push("/");
         },
     },
 };
@@ -156,11 +181,12 @@ input[type="submit"]:hover {
 .signup {
     color: white;
     font-size: 15px;
+    margin-top: 20px;
     font-family: "Poppins", sans-serif;
 }
 
 .signup a {
-    color: #2c3bc5;
+    color: #fff;
     text-decoration: none;
 }
 
