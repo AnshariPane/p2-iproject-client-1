@@ -22,22 +22,41 @@
 </template>
 
 <script>
-import {mapState, mapActions} from "vuex"
+import Vue from "vue";
+import Swal from "sweetalert2";
+import { mapState, mapActions } from "vuex";
+import { LoaderPlugin } from "vue-google-login";
+Vue.use(LoaderPlugin, {
+    client_id:
+        "299163885178-lboph42aq8spb33ckircvk2obrdqleu4.apps.googleusercontent.com",
+});
 export default {
     name: "Navbar",
-    computed :{
-        ...mapState(["isLoggedIn"])
+    computed: {
+        ...mapState(["isLoggedIn"]),
     },
-    methods : {
+    methods: {
         ...mapActions(["checkToken"]),
         logoutButton() {
             if (this.isLoggedIn) {
-                localStorage.clear()
-                this.checkToken()
-                this.$router.push("/login")
+                localStorage.clear();
+                Vue.GoogleAuth.then((auth2) => {
+                    auth2.signOut().then(function() {
+                        console.log(`User signed out.`);
+                    });
+                });
+                this.checkToken();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Logout success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                this.$router.push("/login");
             }
-        }
-    }
+        },
+    },
 };
 </script>
 
