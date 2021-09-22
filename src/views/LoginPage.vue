@@ -51,7 +51,7 @@ export default {
         async loginButton() {
             const payload = this.credentials;
             await this.loginHandler(payload);
-            //    this.$router.push("/")
+            this.$router.push("/");
         },
     },
 };
