@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/LoginPage.vue"
+import GroupchatPage from "../views/GroupchatPage.vue"
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/groupchat',
+    name: 'groupchatPage',
+    component: GroupchatPage
   },
 ]
 

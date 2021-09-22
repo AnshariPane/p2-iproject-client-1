@@ -6,7 +6,7 @@
                 <ul class="nav_links">
                     <li><router-link to="/">Home</router-link></li>
                     <li v-if="isLoggedIn">
-                        <router-link to="/">Favourites</router-link>
+                        <router-link to="/groupchat">Group-chat</router-link>
                     </li>
                 </ul>
             </nav>
