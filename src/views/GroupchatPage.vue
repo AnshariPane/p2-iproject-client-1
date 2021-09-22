@@ -30,7 +30,6 @@ export default {
     },
     methods: {
         clickButton: function(data) {
-            // $socket is socket.io-client instance
             console.log(data);
             this.$socket.emit("groupChat", this.messages);
             this.messages = "";
