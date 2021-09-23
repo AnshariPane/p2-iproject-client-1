@@ -3,7 +3,7 @@
     <ul id="messages" v-for="(log, index) in logs" :key="index">
       <li>{{ log.message }}</li>
     </ul>
-    <form @submit.prevent="clickButton" id="form" action="">
+    <form class="custom-margin" @submit.prevent="clickButton" id="form" action="">
       <input v-model="messages" id="input" autocomplete="off" /><button type="submit">
         Send
       </button>
@@ -19,7 +19,7 @@ import SocketIO from "socket.io-client";
 Vue.use(
   new VueSocketIO({
     debug: true,
-    connection: SocketIO("http://localhost:8081/"),
+    connection: SocketIO("https://my-vtuberlist.herokuapp.com/"),
     vuex: {
       store,
       actionPrefix: "SOCKET_",
@@ -114,5 +114,10 @@ export default {
 }
 #messages > li:nth-child(odd) {
   background: #efefef;
+}
+
+.custom-margin {
+  margin: 0;
+  padding: 0
 }
 </style>

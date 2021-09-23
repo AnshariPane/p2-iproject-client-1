@@ -6,6 +6,7 @@
       <charactersTable :characters="characters" />
     </div>
   </div>
+
 </template>
 
 <script>
