@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from "../views/LoginPage.vue"
 import Register from "../views/Register.vue"
 import characterDetail from "../components/characterDetail"
+import GroupchatPage from "../views/GroupchatPage.vue"
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/charaDetails/:id',
     name: 'characterDetail',
     component: characterDetail
+  },
+  {
+    path: '/groupchat',
+    name: 'groupchatPage',
+    component: GroupchatPage
   },
 ]
 

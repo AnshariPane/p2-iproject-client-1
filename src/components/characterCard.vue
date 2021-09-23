@@ -6,7 +6,7 @@
         <img
             :src="character.imageUrl"
             alt="movie"
-            style="max-width: 100%; max-height: 30vh"
+            style="max-width: 100%; max-height: 30vh;"
         />
         <h5 class="custom-h5">{{character.name}}</h5>
     </div>

@@ -13,9 +13,7 @@ export default {
   methods: {
     ...mapActions(["fetchYoutubeVideo"])
   },
-  created() {
-      console.log(this.charaDetail);
-  }
+
 };
 </script>
 

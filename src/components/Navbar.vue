@@ -6,7 +6,7 @@
                 <ul class="nav_links">
                     <li><router-link to="/">Home</router-link></li>
                     <li v-if="isLoggedIn">
-                        <router-link to="/">Favourites</router-link>
+                        <router-link to="/groupChat">Leave a message here !</router-link>
                     </li>
                 </ul>
             </nav>
@@ -28,7 +28,7 @@ import { mapState, mapActions } from "vuex";
 import { LoaderPlugin } from "vue-google-login";
 Vue.use(LoaderPlugin, {
     client_id:
-        "299163885178-lboph42aq8spb33ckircvk2obrdqleu4.apps.googleusercontent.com",
+        "295341731963-bc96ce0ercj1l5qadetbnvd5hluclct6.apps.googleusercontent.com",
 });
 export default {
     name: "Navbar",

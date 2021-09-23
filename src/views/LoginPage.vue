@@ -54,7 +54,7 @@ export default {
             },
             params: {
                 client_id:
-                    "299163885178-lboph42aq8spb33ckircvk2obrdqleu4.apps.googleusercontent.com",
+                    "295341731963-bc96ce0ercj1l5qadetbnvd5hluclct6.apps.googleusercontent.com",
             },
             renderParams: {
                 width: 305,
